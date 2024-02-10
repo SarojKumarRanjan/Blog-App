@@ -38,7 +38,7 @@ function LoginPage() {
     <form onSubmit={handleSubmit(login)}>
       <Input
         label="Email: "
-        placeHolder="Enter your Email"
+        placeholder="Enter your Email"
         type="email"
         {...register("email", {
           required: true,
@@ -52,7 +52,7 @@ function LoginPage() {
 
       <Input
         label="Password"
-        placeHolder="Enter Password here"
+        placeholder="Enter Password here"
         type="password"
         {...register("password", {
           required: true,

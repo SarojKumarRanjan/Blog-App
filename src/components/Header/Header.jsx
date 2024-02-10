@@ -8,10 +8,7 @@ import { Button } from "@/components/ui/button"
 
 function Header() {
 
-    const authStatus = useSelector((state) => {
-        state.auth.status
-
-    })
+    const authStatus = useSelector((state) => state.auth.status)
 
     const navigate = useNavigate()
 
@@ -43,7 +40,7 @@ function Header() {
     ]
 
   return (
-    <Header>
+    
         <Container>
             <nav className="flex">
                 <div>
@@ -67,7 +64,7 @@ function Header() {
                 </ul>
             </nav>
         </Container>
-    </Header>
+    
   )
 }
 

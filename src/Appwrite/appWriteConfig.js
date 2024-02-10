@@ -1,4 +1,4 @@
-import config from "config";
+import config from "@/conf";
 import { Databases,Query,Storage, Client,ID } from "appwrite"
 
 
@@ -55,7 +55,7 @@ export class databaseService{
         }
     }
 
-    async daletePost(slug){
+    async deletePost(slug){
         try {
              await this.databases.deleteDocument( config.appwritedatabaseurl,
                 config.appwritecollectionid,
@@ -99,7 +99,7 @@ export class databaseService{
 
     async uploadFile(file){
         try {
-            return await this.bucket(
+            return await this.bucket.createFile(
                 config.appwritebucketid,
                 ID.unique(),
                 file

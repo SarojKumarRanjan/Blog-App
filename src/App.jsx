@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import authService from "./Appwrite/auth";
 import { login,logout } from "./Store/authSlice";
+import { Outlet } from "react-router-dom";
+import  Header  from "./components/Header/Header";
+import Footer  from "./components/Footer/Footer"
 
 
 function App() {
@@ -32,7 +35,11 @@ useEffect(() => {
  
   return loading ? <div>loading</div>  :(
     <>
-      <h1>hello from main page</h1>
+    <Header/>
+      <Outlet/>
+      <Footer/>
+      
+      
     </>
   );
 }
