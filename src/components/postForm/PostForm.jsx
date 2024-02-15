@@ -24,12 +24,14 @@ function PostForm({ post }) {
       },
     });
 
-  const userData = useSelector((state) => state.auth.userData);
+  const userData = useSelector((state) => state.auth.userData)
+
+  
 
   
   const submit = async (data) => {
    // console.log(data);
-    
+    console.log(userData);
     if (post) {
       const File = data.image[0]
         ? DatabaseService.uploadFile(data.image[0])
