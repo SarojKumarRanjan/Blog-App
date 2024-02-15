@@ -25,7 +25,7 @@ export class AuthService {
       if (userAccount) {
         // call another method to directly login user after successfull account creation
 
-        return this.login({ email, password });
+        return await this.login({ email, password });
       } else {
         return userAccount;
       }
@@ -39,18 +39,18 @@ export class AuthService {
     try {
       return await this.account.createEmailSession(email, password);
     } catch (error) {
-      throw error;
+      console.log("error in login part in auth.js", error);
+      throw error; // Rethrow the error
     }
   }
-
   async getCurrentUser(){
     // eslint-disable-next-line no-useless-catch
     try {
         return await this.account.get();
     } catch (error) {
-        throw error;
+        console.log("appwrite service",error);
     }
-    
+    return null;
 
     
   }

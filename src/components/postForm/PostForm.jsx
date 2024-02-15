@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function PostForm({ post }) {
-  console.log(post);
+  //console.log(post);
   const navigate = useNavigate();
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
@@ -24,20 +24,24 @@ function PostForm({ post }) {
       },
     });
 
-  const userData = useSelector((state) => state.userData);
+  const userData = useSelector((state) => state.auth.userData);
+
+  
   const submit = async (data) => {
+   // console.log(data);
+    
     if (post) {
       const File = data.image[0]
         ? DatabaseService.uploadFile(data.image[0])
         : null;
 
       if (File) {
-        DatabaseService.deleteFile(post.postImage);
+        DatabaseService.deleteFile(post.imageId);
       }
 
       const dbPost = await DatabaseService.updatepost(post.$id, {
         ...data,
-        postImage: File ? File.$id : undefined,
+        postImage: File ? data.postImage : null,
       });
 
       if (dbPost) {
@@ -45,15 +49,16 @@ function PostForm({ post }) {
       }
     } else {
       const file = await DatabaseService.uploadFile(data.image[0]);
-
+      //console.log(file+" uploaded");
       if (file) {
         const fileId = file.$id;
-        data.postImage = fileId;
+                data.imageId = fileId;
+        
         const dbPost = await DatabaseService.createPost({
           ...data,
-          userId: userData.$id,
+          userId: userData.$id
         });
-        console.log({...data});
+        
 
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
@@ -62,6 +67,47 @@ function PostForm({ post }) {
     }
   };
 
+  
+/*   const submit = async (data) => {
+    try {
+        if (userData && userData.$id) {
+            if (post) {
+                const File = data.image[0] ? await DatabaseService.uploadFile(data.image[0]) : null;
+                if (File) {
+                    await DatabaseService.deleteFile(post.postImage);
+                }
+                const dbPost = await DatabaseService.updatepost(post.$id, {
+                    ...data,
+                    postImage: File ? File.$id : null,
+                });
+                if (dbPost) {
+                    navigate(`/post/${dbPost.$id}`);
+                }
+            } else {
+                const file = await DatabaseService.uploadFile(data.image[0]);
+                console.log(file + " uploaded");
+                if (file) {
+                    const fileId = file.$id;
+                    data.postImage = fileId;
+                    const dbPost = await DatabaseService.createPost({
+                        ...data,
+                        userId: userData.$id,
+                    });
+                    console.log({...data});
+                    if (dbPost) {
+                        navigate(`/post/${dbPost.$id}`);
+                    }
+                }
+            }
+        } else {
+            console.error("userData is undefined or missing $id property");
+        }
+    } catch (error) {
+        console.error("An error occurred:", error);
+    }
+};
+ */
+  
   const slugTransform = useCallback((value) => {
     if (value && typeof value === "string")
       return value
@@ -130,7 +176,7 @@ function PostForm({ post }) {
         {post && (
           <div className="w-full mb-4">
             <img
-              src={DatabaseService.getFilePreview(post.featuredImage)}
+              src={DatabaseService.getFilePreview(post.imageId)}
               alt={post.title}
               className="rounded-lg"
             />

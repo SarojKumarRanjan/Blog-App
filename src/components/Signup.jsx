@@ -21,7 +21,7 @@ function Signup() {
     try {
       const session = await authService.createAccount(data);
       if (session) {
-        const userData = authService.getCurrentUser();
+        const userData = await authService.getCurrentUser();
 
         if (userData) {
           dispatch(authLogin(userData));
@@ -39,7 +39,7 @@ function Signup() {
     <form onSubmit={handleSubmit(createUser)}>
       <Input
         label="Email: "
-        placeHolder="Enter your Email"
+        placeholder="Enter your Email"
         type="email"
         {...register("email", {
           required: true,
@@ -53,7 +53,7 @@ function Signup() {
 
       <Input
         label="Password"
-        placeHolder="Enter Password here"
+        placeholder="Enter Password here"
         type="password"
         {...register("password", {
           required: true,

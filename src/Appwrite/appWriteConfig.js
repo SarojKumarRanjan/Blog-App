@@ -21,14 +21,14 @@ export class databaseService{
 
 
     }
-    async createPost({title,slug,content,postImage,status,userId}){
+    async createPost({title,slug,content,imageId,status,userId}){
         try {
             return await this.databases.createDocument(
                 config.appwritedatabaseurl,
                 config.appwritecollectionid,
                 slug,
                 {
-                    content,title,postImage,status,userId
+                    content,title,imageId,status,userId
                 }
             )
         } catch (error) {
@@ -36,7 +36,7 @@ export class databaseService{
         }
     }
 
-    async updatepost(slug,{title,content,postImage,status}){
+    async updatepost(slug,{title,content,imageId,status}){
 
         try {
             return await this.databases.updateDocument(
@@ -46,7 +46,7 @@ export class databaseService{
                 {
                     title,
                     content,
-                    postImage,
+                    imageId,
                     status
                 }
             )

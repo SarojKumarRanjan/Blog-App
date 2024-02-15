@@ -18,6 +18,7 @@ export default function Post() {
     useEffect(() => {
         if (slug) {
             DatabaseService.getPost(slug).then((post) => {
+               // console.log(post);
                 if (post) setPost(post);
                 else navigate("/");
             });
@@ -27,18 +28,20 @@ export default function Post() {
     const deletePost = () => {
         DatabaseService.deletePost(post.$id).then((status) => {
             if (status) {
-                DatabaseService.deleteFile(post.featuredImage);
+                DatabaseService.deleteFile(post.imageId);
                 navigate("/");
             }
         });
     };
 
+    
     return post ? (
+        
         <div className="py-8">
             <Container>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-                    <img
-                        src={DatabaseService.getFilePreview(post.featuredImage)}
+                <img
+                        src={DatabaseService.getFilePreview(post.imageId)}
                         alt={post.title}
                         className="rounded-xl"
                     />
@@ -46,11 +49,11 @@ export default function Post() {
                     {isAuthor && (
                         <div className="absolute right-6 top-6">
                             <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" className="mr-3">
+                                <Button bgcolor="bg-green-500" className="mr-3">
                                     Edit
                                 </Button>
                             </Link>
-                            <Button bgColor="bg-red-500" onClick={deletePost}>
+                            <Button  onClick={deletePost}>
                                 Delete
                             </Button>
                         </div>
@@ -64,5 +67,6 @@ export default function Post() {
                     </div>
             </Container>
         </div>
+        
     ) : null;
 }

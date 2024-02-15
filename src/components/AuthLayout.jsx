@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-export default function AuthLayout({ children, authentication = true }) {
+export default function AuthLayout({ children, authentication  }) {
   const [loader, setLoader] = useState(true);
   const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);

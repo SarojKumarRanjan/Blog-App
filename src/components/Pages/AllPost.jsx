@@ -4,12 +4,14 @@ import { useState,useEffect } from "react"
 
 function AllPost() {
     const [posts, setPosts] = useState([])
-    useEffect(() => {}, [])
-    DatabaseService.getPosts([]).then((posts) => {
-        if (posts) {
-            setPosts(posts.documents)
-        }
-    })
+    useEffect(() => {
+        DatabaseService.getPosts([]).then((posts) => {
+            if (posts) {
+                setPosts(posts.documents)
+            }
+        })
+    }, [])
+   
   return (
     <div className='w-full py-8'>
         <Container>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import DatabaseService from "../Appwrite/appWriteConfig"
+import parse from "html-react-parser";
 
 
 import {
@@ -14,18 +15,20 @@ import {
   
 
 // eslint-disable-next-line react/prop-types
-function BlogCard({$id,title,postImage}) {
+function BlogCard({$id,title,imageId,content}) {
   return (
 <Link to={`/post/${$id}`}>
    <Card>
     <CardHeader>
-    <img src={DatabaseService.getFilePreview(postImage)} alt={title} />
+    <img src={DatabaseService.getFilePreview(imageId)} alt={title} />
     </CardHeader>
      <CardContent>
         <CardTitle>
          <h2>{title}</h2>
         </CardTitle>
-     
+        <CardDescription>
+          {parse(content)}
+        </CardDescription>
      </CardContent>
    </Card>
 

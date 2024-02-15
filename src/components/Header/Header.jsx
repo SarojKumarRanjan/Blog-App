@@ -11,7 +11,7 @@ function Header() {
     const authStatus = useSelector((state) => state.auth.status)
 
     const navigate = useNavigate()
-
+//console.log(authStatus);
     const navItems = [
         {
             name:"Home",
@@ -42,17 +42,17 @@ function Header() {
   return (
     
         <Container>
-            <nav className="flex">
+            <nav className="flex justify-between text-3xl">
                 <div>
                     <Link to="/">
                     logo
                     </Link>
                 </div>
-                <ul className="flex">
+                <ul className="flex justify-between gap-6">
                    {navItems.map((item) => 
                      item.active ?(
-                        <li key={item.name}> 
-                          <Button onClick={() => navigate(item.slug)} variant="link">{item.name}</Button>
+                        <li key={item.name} > 
+                          <Button className="text-xl" onClick={() => navigate(item.slug)} variant="link">{item.name}</Button>
                         </li>
                      )  : null
                    )}

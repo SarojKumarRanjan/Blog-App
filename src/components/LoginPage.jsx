@@ -20,9 +20,10 @@ function LoginPage() {
     try {
       const session = await authService.login(data);
       if (session) {
-        const userData = authService.getCurrentUser();
+        const userData = await authService.getCurrentUser();
 
         if (userData) {
+         // console.log(userData);
           dispatch(authLogin(userData));
           navigate("/");
         } else {
