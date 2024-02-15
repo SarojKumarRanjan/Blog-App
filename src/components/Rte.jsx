@@ -1,6 +1,9 @@
 import { Editor } from "@tinymce/tinymce-react"
 import { Controller } from "react-hook-form"
 import { Label } from "./ui/label"
+import config from "../conf.js"
+
+//console.log(config.tinymceapikey);
 
 // eslint-disable-next-line react/prop-types
 export default function Rte({name,label,control,defaultValue}) {
@@ -12,7 +15,7 @@ name={name || "content"}
 control={control}
 render={({field:{onChange}}) => (
     <Editor
-    apiKey="ymv0gyv0jh3mfkvgzg80fyiamaq6eqer7j4xlxdof0xg04cw"
+    apiKey={config.tinymceapikey}
     initialValue={defaultValue}
     init={{
         initialValue: defaultValue,
