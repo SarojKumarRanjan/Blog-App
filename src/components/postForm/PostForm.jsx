@@ -31,7 +31,7 @@ function PostForm({ post }) {
   
   const submit = async (data) => {
    // console.log(data);
-    console.log(userData);
+   // console.log(userData);
     if (post) {
       const File = data.image[0]
         ? DatabaseService.uploadFile(data.image[0])
