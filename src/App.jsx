@@ -6,6 +6,7 @@ import { login,logout } from "./Store/authSlice";
 import { Outlet } from "react-router-dom";
 import  Header  from "./components/Header/Header";
 import Footer  from "./components/Footer/Footer"
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 
 function App() {
@@ -36,6 +37,7 @@ useEffect(() => {
   return loading ? <div>loading</div>  :(
     <>
     <Header/>
+    <SpeedInsights/>
       <Outlet/>
       <Footer/>
       

@@ -38,6 +38,13 @@ function Signup() {
   return (
     <form onSubmit={handleSubmit(createUser)}>
       <Input
+        label="Full Name: "
+        placeholder="Enter your full name"
+        {...register("name", {
+          required: true,
+        })}
+      />
+      <Input
         label="Email: "
         placeholder="Enter your Email"
         type="email"
