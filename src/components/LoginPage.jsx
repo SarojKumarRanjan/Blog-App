@@ -7,6 +7,17 @@ import { useForm } from "react-hook-form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 
+
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
 function LoginPage() {
   const dispatch = useDispatch();
 
@@ -45,8 +56,21 @@ function LoginPage() {
   }    
 
   return (
+    <div className="flex justify-center mt-[150px] h-[360px]">
+    <Card className="w-[400px]">
+      <CardHeader className=" text-xl">
+         <CardTitle>
+           Sign in 
+         </CardTitle>
+           <CardDescription>
+              Login to add post 
+           </CardDescription>
+      </CardHeader>
+      
     <form onSubmit={handleSubmit(login)}>
+    <CardContent className="my-4">
       <Input
+      className="mb-5"
         label="Email: "
         placeholder="Enter your Email"
         type="email"
@@ -68,9 +92,16 @@ function LoginPage() {
           required: true,
         })}
       />
+      </CardContent>
+
+      <CardFooter >
 
       <Button type="submit">Sign in</Button>
+      </CardFooter>
     </form>
+    
+    </Card>
+    </div>
   );
 }
 

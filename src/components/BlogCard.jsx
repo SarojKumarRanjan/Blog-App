@@ -20,7 +20,7 @@ function BlogCard({$id,title,imageId,content}) {
   const Content  = parse(content)
   return (
 <Link to={`/post/${$id}`}>
-   <Card>
+   <Card className="h-[350]" >
     <CardHeader>
     <img src={DatabaseService.getFilePreview(imageId)} alt={title} />
 
@@ -29,11 +29,11 @@ function BlogCard({$id,title,imageId,content}) {
         </CardTitle>
     </CardHeader>
      <CardContent>
-     
+     {Content}
         </CardContent>
         <CardFooter>
         <CardDescription>
-          {Content}
+          Read more....
         </CardDescription>
         </CardFooter>
      

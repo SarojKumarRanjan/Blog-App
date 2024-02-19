@@ -50,9 +50,10 @@ export class AuthService {
     } catch (error) {
          
         console.log("appwrite service in get current user",error);
-       
+        return null;
     }
-    return null;
+    
+   
     
 
     

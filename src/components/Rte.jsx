@@ -1,6 +1,7 @@
 import { Editor } from "@tinymce/tinymce-react"
 import { Controller } from "react-hook-form"
 import { Label } from "./ui/label"
+// eslint-disable-next-line no-unused-vars
 import config from "../conf.js"
 
 //console.log(config.tinymceapikey);
@@ -15,7 +16,7 @@ name={name || "content"}
 control={control}
 render={({field:{onChange}}) => (
     <Editor
-    apiKey={config.tinymceapikey}
+   // apiKey={config.tinymceapikey}
     initialValue={defaultValue}
     init={{
         initialValue: defaultValue,

@@ -3,6 +3,7 @@ import {BlogCard,Container} from ".."
 // import DatabaseService from '@/Appwrite/appWriteConfig'
 import useGetpost from '@/utils/useGetpost'
 import { useSelector } from 'react-redux'
+import Shimmer from "@/utils/Shimmer"
 
 function Home()  {
     /* const [posts, setPosts] = useState([])
@@ -24,13 +25,7 @@ function Home()  {
         return (
             <div className="w-full py-8 mt-4 text-center">
                 <Container>
-                    <div className="flex flex-wrap">
-                        <div className="p-2 w-full">
-                            <h1 className="text-2xl font-bold hover:text-gray-500">
-                                Login to read posts
-                            </h1>
-                        </div>
-                    </div>
+                    <Shimmer/>
                 </Container>
             </div>
         )

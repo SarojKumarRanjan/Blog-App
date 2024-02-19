@@ -2,7 +2,7 @@ import {LoginPage as LoginComponent} from ".."
 
 function Login() {
   return (
-   <LoginComponent/>
+   <LoginComponent />
   )
 }
 

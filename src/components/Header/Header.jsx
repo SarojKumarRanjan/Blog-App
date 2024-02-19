@@ -42,7 +42,7 @@ function Header() {
   return (
     
         <Container>
-            <nav className="flex justify-between text-3xl">
+            <nav className="flex justify-between text-3xl my-4 py-2 shadow-sm">
                 <div>
                     <Link to="/">
                     logo
@@ -52,7 +52,7 @@ function Header() {
                    {navItems.map((item) => 
                      item.active ?(
                         <li key={item.name} > 
-                          <Button className="text-xl" onClick={() => navigate(item.slug)} variant="link">{item.name}</Button>
+                          <Button variant="default"  onClick={() => navigate(item.slug)} >{item.name}</Button>
                         </li>
                      )  : null
                    )}
