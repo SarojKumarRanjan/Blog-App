@@ -4,14 +4,36 @@ import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-//import { Select } from "../ui/select";
+
 import { Label } from "../ui/label";
 import { Rte } from "..";
 import DatabaseService from "@/Appwrite/appWriteConfig";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
 function PostForm({ post }) {
+
+
+  
+  
+  
+   const userData = useSelector((state) => state.auth.userData)
+   
+  
+   
+
+
   //console.log(post);
   const navigate = useNavigate();
   const { register, handleSubmit, watch, setValue, control, getValues } =
@@ -24,14 +46,14 @@ function PostForm({ post }) {
       },
     });
 
-  const userData = useSelector((state) => state.auth.userData)
-
   
 
   
+
+  //console.log(userData);
   const submit = async (data) => {
-   // console.log(data);
-   // console.log(userData);
+    //console.log(data);
+    //console.log(userData);
     if (post) {
       const File = data.image[0]
         ? DatabaseService.uploadFile(data.image[0])
@@ -58,7 +80,7 @@ function PostForm({ post }) {
         
         const dbPost = await DatabaseService.createPost({
           ...data,
-          userId: userData.$id
+          userId: userData.userData.$id
         });
         
 
@@ -184,6 +206,25 @@ function PostForm({ post }) {
             />
           </div>
         )}
+
+
+<Select>
+      <SelectTrigger {...register("status", { required: true })} className="w-[180px]">
+        <SelectValue placeholder="Select a Status" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel
+           
+          >Status</SelectLabel>
+          <SelectItem value="Active">Active</SelectItem>
+          <SelectItem value="Inactive">Inactive</SelectItem>
+         
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+
+
        {/*  <Select
           options={["active", "inactive"]}
           label="Status"

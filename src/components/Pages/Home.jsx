@@ -1,9 +1,11 @@
-import {useState,useEffect} from 'react'
+// import {useState,useEffect} from 'react'
 import {BlogCard,Container} from ".."
-import DatabaseService from '@/Appwrite/appWriteConfig'
+// import DatabaseService from '@/Appwrite/appWriteConfig'
+import useGetpost from '@/utils/useGetpost'
+import { useSelector } from 'react-redux'
 
 function Home()  {
-    const [posts, setPosts] = useState([])
+    /* const [posts, setPosts] = useState([])
 
     useEffect(() => {
         DatabaseService.getPosts([]).then((posts) => {
@@ -11,7 +13,12 @@ function Home()  {
                 setPosts(posts.documents)
             }
         })
-    }, [])
+    }, []) */
+
+    useGetpost()
+
+    const posts = useSelector((state) => state.posts.posts)
+
   
     if (posts.length === 0) {
         return (
