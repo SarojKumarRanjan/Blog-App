@@ -18,22 +18,31 @@ function LoginPage() {
     setError("");
 
     try {
+      // Attempt to log in with provided data
       const session = await authService.login(data);
+    
       if (session) {
+        // If login successful, retrieve current user data
         const userData = await authService.getCurrentUser();
-
+    
         if (userData) {
+          // If user data is retrieved successfully, dispatch login action and navigate to home page
          // console.log(userData);
           dispatch(authLogin(userData));
           navigate("/");
         } else {
-          console.log("error in userdata in login page", error);
+          // If user data is not retrieved, log an error
+          console.error("Error: Unable to retrieve user data after login",error);
         }
+      } else {
+        // If session is not returned after login, log an error
+        console.error("Error: No session returned after login");
       }
     } catch (error) {
+      // If any error occurs during login process, set error state to display to the user
       setError(error.message);
     }
-  };
+  }    
 
   return (
     <form onSubmit={handleSubmit(login)}>
