@@ -5,6 +5,7 @@ import { Databases,Query,Storage, Client,ID } from "appwrite"
 
 
 
+
 export class databaseService{
 
     client = new Client();
@@ -82,12 +83,14 @@ export class databaseService{
 
 
     async getPosts( queries = [Query.equal("status","active")]){
+        
         try {
-            return await this.databases.listDocuments(
+            return  await this.databases.listDocuments(
                 config.appwritedatabaseurl,
                 config.appwritecollectionid,
                 queries,
-            )
+            );
+
         } catch (error) {
             console.log("error in getting all post",error);
             return false;

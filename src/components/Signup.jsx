@@ -7,6 +7,18 @@ import { useForm } from "react-hook-form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { login as authLogin } from "@/Store/authSlice";
+import { Link } from "react-router-dom";
+
+
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 function Signup() {
   const dispatch = useDispatch();
@@ -36,7 +48,19 @@ function Signup() {
   };
 
   return (
+    <div className="flex justify-center mt-[150px] h-[400px]">
+      <Card className="w-[400px]">
+        <CardHeader className=" text-xl">
+          <CardTitle>
+           Sign up
+          </CardTitle>
+          <CardDescription>
+            Welcome to Blog-App!
+          </CardDescription>
+
+        </CardHeader>
     <form onSubmit={handleSubmit(createUser)}>
+      <CardContent className="my-4">
       <Input
         label="Full Name: "
         placeholder="Enter your full name"
@@ -45,6 +69,7 @@ function Signup() {
         })}
       />
       <Input
+      className="my-5"
         label="Email: "
         placeholder="Enter your Email"
         type="email"
@@ -66,9 +91,14 @@ function Signup() {
           required: true,
         })}
       />
-
+      </CardContent>
+       <CardFooter className="flex justify-between">
       <Button type="submit">Sign up</Button>
+      <Link to="/login"><Button >Login</Button></Link>
+      </CardFooter>
     </form>
+    </Card>
+    </div>
   );
 }
 

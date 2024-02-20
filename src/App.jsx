@@ -6,6 +6,7 @@ import { login,logout } from "./Store/authSlice";
 import { Outlet } from "react-router-dom";
 import  Header  from "./components/Header/Header";
 import Footer  from "./components/Footer/Footer"
+import Shimmer from "./utils/Shimmer";
 
 
 
@@ -19,7 +20,7 @@ useEffect(() => {
   authService.getCurrentUser()
   .then((userData) => {
     if (userData) {
-      dispatch(login({userData}))
+      dispatch(login(userData))
     }else{
       dispatch(logout())
     }
@@ -34,7 +35,7 @@ useEffect(() => {
 
 
  
-  return loading ? <div>loading</div>  :(
+  return loading ? <Shimmer/>  :(
     <>
     <Header/>
     

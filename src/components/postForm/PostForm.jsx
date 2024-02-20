@@ -4,14 +4,40 @@ import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-//import { Select } from "../ui/select";
+
 import { Label } from "../ui/label";
 import { Rte } from "..";
 import DatabaseService from "@/Appwrite/appWriteConfig";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
 function PostForm({ post }) {
+
+
+  
+  
+  
+  const userData = useSelector((state) => state.auth?.userData)
+
+   let userId;
+  if(userData != undefined || userData != null){
+    userId = userData?.$id
+  }
+   console.log(userId);
+   console.log(userData);
+
+
   //console.log(post);
   const navigate = useNavigate();
   const { register, handleSubmit, watch, setValue, control, getValues } =
@@ -24,14 +50,14 @@ function PostForm({ post }) {
       },
     });
 
-  const userData = useSelector((state) => state.auth.userData)
-
   
 
   
+
+  //console.log(userData);
   const submit = async (data) => {
-   // console.log(data);
-    console.log(userData);
+    //console.log(data);
+    //console.log(userData);
     if (post) {
       const File = data.image[0]
         ? DatabaseService.uploadFile(data.image[0])
@@ -41,29 +67,29 @@ function PostForm({ post }) {
         DatabaseService.deleteFile(post.imageId);
       }
 
-      const dbPost = await DatabaseService.updatepost(post.$id, {
+      const dbPost = await DatabaseService.updatepost(post?.$id, {
         ...data,
-        postImage: File ? data.postImage : null,
+        postImage: File ? data?.postImage : null,
       });
 
       if (dbPost) {
-        navigate(`/post/${dbPost.$id}`);
+        navigate(`/post/${dbPost?.$id}`);
       }
     } else {
-      const file = await DatabaseService.uploadFile(data.image[0]);
+      const file = await DatabaseService.uploadFile(data?.image[0]);
       //console.log(file+" uploaded");
       if (file) {
-        const fileId = file.$id;
+        const fileId = file?.$id;
                 data.imageId = fileId;
-        
+       // console.log(userData);
         const dbPost = await DatabaseService.createPost({
           ...data,
-          userId: userData.$id
+          userId: userId
         });
-        
+       
 
         if (dbPost) {
-          navigate(`/post/${dbPost.$id}`);
+          navigate(`/post/${dbPost?.$id}`);
         }
       }
     }
@@ -124,7 +150,7 @@ function PostForm({ post }) {
   React.useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "title") {
-        setValue("slug", slugTransform(value.title), { shouldValidate: true });
+        setValue("slug", slugTransform(value?.title), { shouldValidate: true });
       }
     });
 
@@ -178,12 +204,31 @@ function PostForm({ post }) {
         {post && (
           <div className="w-full mb-4">
             <img
-              src={DatabaseService.getFilePreview(post.imageId)}
+              src={DatabaseService.getFilePreview(post?.imageId)}
               alt={post.title}
               className="rounded-lg"
             />
           </div>
         )}
+
+
+<Select>
+      <SelectTrigger {...register("status", { required: true })} className="w-[180px]">
+        <SelectValue placeholder="Select a Status" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel
+           
+          >Status</SelectLabel>
+          <SelectItem value="Active">Active</SelectItem>
+          <SelectItem value="Inactive">Inactive</SelectItem>
+         
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+
+
        {/*  <Select
           options={["active", "inactive"]}
           label="Status"

@@ -1,6 +1,7 @@
 import { Editor } from "@tinymce/tinymce-react"
 import { Controller } from "react-hook-form"
 import { Label } from "./ui/label"
+// eslint-disable-next-line no-unused-vars
 import config from "../conf.js"
 
 //console.log(config.tinymceapikey);

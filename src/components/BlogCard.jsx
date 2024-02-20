@@ -8,7 +8,7 @@ import {
     CardContent,
     // eslint-disable-next-line no-unused-vars
     CardDescription,
-    
+    CardFooter,
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
@@ -16,20 +16,27 @@ import {
 
 // eslint-disable-next-line react/prop-types
 function BlogCard({$id,title,imageId,content}) {
+
+  const Content  = parse(content)
   return (
 <Link to={`/post/${$id}`}>
-   <Card>
+   <Card className="h-[350]" >
     <CardHeader>
     <img src={DatabaseService.getFilePreview(imageId)} alt={title} />
+
+    <CardTitle>
+         {title}
+        </CardTitle>
     </CardHeader>
      <CardContent>
-        <CardTitle>
-         <h2>{title}</h2>
-        </CardTitle>
+     {Content}
+        </CardContent>
+        <CardFooter>
         <CardDescription>
-          {parse(content)}
+          Read more....
         </CardDescription>
-     </CardContent>
+        </CardFooter>
+     
    </Card>
 
    </Link>
