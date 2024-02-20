@@ -6,6 +6,7 @@ import authService from "@/Appwrite/auth";
 import { useForm } from "react-hook-form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 
 
@@ -25,35 +26,21 @@ function LoginPage() {
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
 
-  const login = async (data) => {
-    setError("");
-
+  const login = async(data) => {
+    setError("")
     try {
-      // Attempt to log in with provided data
-      const session = await authService.login(data);
-    
-      if (session) {
-        // If login successful, retrieve current user data
-        const userData = await authService.getCurrentUser();
-    
-        if (userData) {
-          // If user data is retrieved successfully, dispatch login action and navigate to home page
-         // console.log(userData);
-          dispatch(authLogin(userData));
-          navigate("/");
-        } else {
-          // If user data is not retrieved, log an error
-          console.error("Error: Unable to retrieve user data after login",error);
+        const session = await authService.login(data)
+        if (session) {
+            const userData = await authService.getCurrentUser()
+            if(userData) dispatch(authLogin(userData));
+            navigate("/")
         }
-      } else {
-        // If session is not returned after login, log an error
-        console.error("Error: No session returned after login");
-      }
     } catch (error) {
-      // If any error occurs during login process, set error state to display to the user
-      setError(error.message);
+        setError(error.message)
+        
     }
-  }    
+    
+}
 
   return (
     <div className="flex justify-center mt-[150px] h-[360px]">
@@ -94,9 +81,10 @@ function LoginPage() {
       />
       </CardContent>
 
-      <CardFooter >
-
-      <Button type="submit">Sign in</Button>
+      <CardFooter className="flex justify-between">
+      {error && <p className="text-red-600 mt-4 text-center">{error}</p>}
+      <Button type="submit">Login</Button>
+      <Link to="/signup"><Button >Sign up</Button></Link>
       </CardFooter>
     </form>
     

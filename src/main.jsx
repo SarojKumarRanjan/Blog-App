@@ -1,5 +1,7 @@
 
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
+
+import { lazy,Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
@@ -11,10 +13,15 @@ import Home from './components/Pages/Home.jsx'
 import Login from './components/Pages/Login.jsx'
 import SignUpPage from './components/Pages/SignUpPage.jsx'
 import AllPost from './components/Pages/AllPost.jsx'
-import EditPost from './components/Pages/EditPost.jsx'
-import AddPost from './components/Pages/AddPost.jsx'
-import Post from './components/Pages/Post.jsx'
 
+import Post from './components/Pages/Post.jsx'
+import { ThemeProvider } from './utils/ThemeProvider.jsx'
+
+// eslint-disable-next-line react-refresh/only-export-components
+const AddPost = lazy(() =>import ('./components/Pages/AddPost.jsx') )
+
+// eslint-disable-next-line react-refresh/only-export-components
+const EditPost = lazy(() => import('./components/Pages/EditPost.jsx'))
 
 
 
@@ -56,19 +63,23 @@ const router = createBrowserRouter([
         {
             path: "/add-post",
             element: (
+                <Suspense>
                 <AuthLayout authentication>
                     {" "}
                     <AddPost />
                 </AuthLayout>
+                </Suspense>
             ),
         },
         {
             path: "/edit-post/:slug",
             element: (
+                <Suspense>
                 <AuthLayout authentication>
                     {" "}
                     <EditPost />
                 </AuthLayout>
+                </Suspense>
             ),
         },
         {
@@ -80,9 +91,10 @@ const router = createBrowserRouter([
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  
+  <ThemeProvider>
     <Provider store={store}>
     <RouterProvider router={router}/>
     </Provider>
+    </ThemeProvider>
   
 )

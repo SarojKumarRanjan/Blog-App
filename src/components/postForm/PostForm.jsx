@@ -28,10 +28,14 @@ function PostForm({ post }) {
   
   
   
-   const userData = useSelector((state) => state.auth.userData)
-   
-  
-   
+  const userData = useSelector((state) => state.auth?.userData)
+
+   let userId;
+  if(userData != undefined || userData != null){
+    userId = userData?.$id
+  }
+   console.log(userId);
+   console.log(userData);
 
 
   //console.log(post);
@@ -63,29 +67,29 @@ function PostForm({ post }) {
         DatabaseService.deleteFile(post.imageId);
       }
 
-      const dbPost = await DatabaseService.updatepost(post.$id, {
+      const dbPost = await DatabaseService.updatepost(post?.$id, {
         ...data,
-        postImage: File ? data.postImage : null,
+        postImage: File ? data?.postImage : null,
       });
 
       if (dbPost) {
-        navigate(`/post/${dbPost.$id}`);
+        navigate(`/post/${dbPost?.$id}`);
       }
     } else {
-      const file = await DatabaseService.uploadFile(data.image[0]);
+      const file = await DatabaseService.uploadFile(data?.image[0]);
       //console.log(file+" uploaded");
       if (file) {
-        const fileId = file.$id;
+        const fileId = file?.$id;
                 data.imageId = fileId;
-        
+       // console.log(userData);
         const dbPost = await DatabaseService.createPost({
           ...data,
-          userId: userData.userData.$id
+          userId: userId
         });
-        
+       
 
         if (dbPost) {
-          navigate(`/post/${dbPost.$id}`);
+          navigate(`/post/${dbPost?.$id}`);
         }
       }
     }
@@ -146,7 +150,7 @@ function PostForm({ post }) {
   React.useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "title") {
-        setValue("slug", slugTransform(value.title), { shouldValidate: true });
+        setValue("slug", slugTransform(value?.title), { shouldValidate: true });
       }
     });
 
@@ -200,7 +204,7 @@ function PostForm({ post }) {
         {post && (
           <div className="w-full mb-4">
             <img
-              src={DatabaseService.getFilePreview(post.imageId)}
+              src={DatabaseService.getFilePreview(post?.imageId)}
               alt={post.title}
               className="rounded-lg"
             />

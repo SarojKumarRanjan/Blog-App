@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { login as authLogin } from "@/Store/authSlice";
+import { Link } from "react-router-dom";
 
 
 
@@ -91,8 +92,9 @@ function Signup() {
         })}
       />
       </CardContent>
-       <CardFooter>
+       <CardFooter className="flex justify-between">
       <Button type="submit">Sign up</Button>
+      <Link to="/login"><Button >Login</Button></Link>
       </CardFooter>
     </form>
     </Card>

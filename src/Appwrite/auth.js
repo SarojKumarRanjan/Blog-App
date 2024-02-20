@@ -40,24 +40,19 @@ export class AuthService {
       return await this.account.createEmailSession(email, password);
     } catch (error) {
       console.log("error in login part in auth.js", error);
-      throw error; // Rethrow the error
+      return null; // Rethrow the error
     }
   }
-  async getCurrentUser(){
-    // eslint-disable-next-line no-useless-catch
+  async getCurrentUser() {
     try {
         return await this.account.get();
     } catch (error) {
-         
-        console.log("appwrite service in get current user",error);
-        return null;
+        console.log("Appwrite serive :: getCurrentUser :: error", error);
     }
-    
-   
-    
 
-    
-  }
+    return null;
+}
+
 
 async logout(){
     // eslint-disable-next-line no-useless-catch
