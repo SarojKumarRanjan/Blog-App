@@ -3,6 +3,9 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "./ToggleButton";
+import { Separator } from "../ui/separator";
+
+
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
@@ -35,11 +38,16 @@ function Header() {
       slug: "/add-post",
       active: authStatus,
     },
+    {
+      name:"Profile",
+      slug:"/profile",
+      active:authStatus
+    }
   ];
 
   return (
     <Container>
-      <nav className="flex justify-between text-3xl my-4 py-2 shadow-sm">
+      <nav className="flex justify-between text-3xl my-2 py-2 ">
         <div>
           <Link to="/">logo</Link>
         </div>
@@ -63,7 +71,9 @@ function Header() {
           </li>
         </ul>
       </nav>
+      <Separator/>
     </Container>
+    
   );
 }
 
