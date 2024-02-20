@@ -8,7 +8,7 @@ import './index.css'
 import { Provider } from 'react-redux'
 import store from './Store/store.js'
 import {AuthLayout }from './components/index.js'
-
+import Profile from './components/Profile.jsx'
 import Home from './components/Pages/Home.jsx'
 import Login from './components/Pages/Login.jsx'
 import SignUpPage from './components/Pages/SignUpPage.jsx'
@@ -69,6 +69,17 @@ const router = createBrowserRouter([
                     <AddPost />
                 </AuthLayout>
                 </Suspense>
+            ),
+        },
+        {
+            path: "/profile",
+            element: (
+              
+                <AuthLayout authentication>
+                    {" "}
+                    <Profile />
+                </AuthLayout>
+                
             ),
         },
         {

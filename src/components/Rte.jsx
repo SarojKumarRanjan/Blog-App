@@ -16,7 +16,7 @@ name={name || "content"}
 control={control}
 render={({field:{onChange}}) => (
     <Editor
-    apiKey={config.tinymceapikey}
+    //apiKey={config.tinymceapikey}
     initialValue={defaultValue}
     init={{
         initialValue: defaultValue,
