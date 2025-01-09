@@ -10,6 +10,8 @@ import Shimmer from "./utils/Shimmer";
 
 
 
+
+
 function App() {
   
 const [loading,setLoading] = useState(true);
@@ -37,6 +39,7 @@ useEffect(() => {
  
   return loading ? <Shimmer/>  :(
     <>
+    
     <Header/>
     
       <Outlet/>
