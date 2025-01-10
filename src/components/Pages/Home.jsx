@@ -4,6 +4,7 @@ import {BlogCard,Container} from ".."
 import useGetpost from '@/utils/useGetpost'
 import { useSelector } from 'react-redux'
 import Shimmer from "@/utils/Shimmer"
+import { HeroSection } from "../home/Hero-Section"
 
 function Home()  {
     /* const [posts, setPosts] = useState([])
@@ -31,8 +32,15 @@ function Home()  {
         )
     }
     return (
+        <>
+        <HeroSection/>
+       
         <div className='w-full py-8'>
             <Container>
+
+
+
+                
                 <div className='flex flex-wrap'>
                     {posts.map((post) => (
                         <div key={post.$id} className='p-2 w-1/4'>
@@ -42,6 +50,7 @@ function Home()  {
                 </div>
             </Container>
         </div>
+        </>
     )
 }
 
