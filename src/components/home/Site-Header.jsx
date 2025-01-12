@@ -73,6 +73,11 @@ export function SiteHeader() {
                   {item.name}
                 </Button>
                 </Link>
+                {authStatus && (
+            <li>
+              <LogoutBtn />
+            </li>
+          )}
               </li>
             ) : null
           )}
