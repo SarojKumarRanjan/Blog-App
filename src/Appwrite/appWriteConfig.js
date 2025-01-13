@@ -111,6 +111,24 @@ export class databaseService{
     }
 
 
+    async searchPosts(search){
+        const queries = [
+            Query.search('title', search, {'caseSensitive' : false}),
+            Query.search('content', search, {'caseSensitive': false})
+        ];
+        try {
+            return await this.databases.listDocuments(
+                config.appwritedatabaseurl,
+                config.appwritecollectionid,
+                queries
+                
+            )
+        } catch (error) {
+            console.log("error in search post",error);
+            return false;
+        }
+    }
+
     //upload config
 
     async uploadFile(file){

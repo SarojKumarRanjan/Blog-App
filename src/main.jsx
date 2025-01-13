@@ -13,6 +13,7 @@ import Home from './components/Pages/Home.jsx'
 import Login from './components/Pages/Login.jsx'
 import SignUpPage from './components/Pages/SignUpPage.jsx'
 import AllPost from './components/Pages/AllPost.jsx'
+import SearchPage from './components/Pages/SearchPage.jsx'
 
 
 
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
             path: "/post/:slug",
             element: <Post />,
         },
+        {
+            path: "/search/:search",
+            element: <SearchPage />,
+        }
     ],
 },
 ])
