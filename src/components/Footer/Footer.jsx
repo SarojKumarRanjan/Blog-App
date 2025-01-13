@@ -15,17 +15,11 @@ function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <Link href="/" className="flex items-center space-x-2 mb-4">
-            <img 
-              src="https://images.unsplash.com/photo-1682687221248-3116ba6ab483"
-              alt="Horizone"
-              width={24} 
-              height={24}
-              className="object-contain"
-            />
-            <span className="font-semibold">Horizone</span>
+           
+            <span className="font-bold text-xl">Travel News</span>
           </Link>
           <p className="text-sm ">
-            Our mission is to guide modern explorers with technology, knowledge, and stylish recommendations.
+            Our mission is to guide modern explorers with Latest news, knowledge, and stylish recommendations.
           </p>
         </div>
         <div>
@@ -40,7 +34,7 @@ function Footer() {
           <h4 className="font-semibold mb-4">Support</h4>
           <ul className="space-y-2 text-sm ">
             <li><Link href="/contact">Contact Us</Link></li>
-            <li><Link href="/refund">Refund</Link></li>
+           
             <li><Link href="/faq">FAQ</Link></li>
           </ul>
         </div>
@@ -74,7 +68,7 @@ function Footer() {
         </div>
       </div>
       <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-        <p className="text-sm ">©2024 Horizone. All rights reserved.</p>
+        <p className="text-sm ">©2025 Travel News. All rights reserved.</p>
         <div className="flex space-x-4 mt-4 md:mt-0">
           <Link href="/privacy" className="text-sm ">
             Privacy Policy

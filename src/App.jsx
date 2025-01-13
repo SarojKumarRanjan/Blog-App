@@ -4,9 +4,10 @@ import { useDispatch } from 'react-redux';
 import authService from "./Appwrite/auth";
 import { login,logout } from "./Store/authSlice";
 import { Outlet } from "react-router-dom";
-import  Header  from "./components/Header/Header";
+
 import Footer  from "./components/Footer/Footer"
 import Shimmer from "./utils/Shimmer";
+import { SiteHeader } from "./components/home/Site-Header";
 
 
 
@@ -40,7 +41,7 @@ useEffect(() => {
   return loading ? <Shimmer/>  :(
     <>
     
-    <Header/>
+    <SiteHeader/>
     
       <Outlet/>
       <Footer/>

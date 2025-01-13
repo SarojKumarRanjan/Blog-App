@@ -8,6 +8,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { login as authLogin } from "@/Store/authSlice";
 import { Link } from "react-router-dom";
+import { Label } from "./ui/label";
 
 
 
@@ -48,56 +49,79 @@ function Signup() {
   };
 
   return (
-    <div className="flex justify-center mt-[150px] h-[400px]">
-      <Card className="w-[400px]">
-        <CardHeader className=" text-xl">
-          <CardTitle>
-           Sign up
+    <div className="min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
+      <Card className="w-full max-w-md">
+        <CardHeader className="space-y-2 text-center">
+          <CardTitle className="text-2xl font-bold tracking-tight">
+            Create an account
           </CardTitle>
-          <CardDescription>
-            Welcome to Blog-App!
+          <CardDescription className="text-gray-500">
+            Enter your information to get started
           </CardDescription>
-
         </CardHeader>
-    <form onSubmit={handleSubmit(createUser)}>
-      <CardContent className="my-4">
-      <Input
-        label="Full Name: "
-        placeholder="Enter your full name"
-        {...register("name", {
-          required: true,
-        })}
-      />
-      <Input
-      className="my-5"
-        label="Email: "
-        placeholder="Enter your Email"
-        type="email"
-        {...register("email", {
-          required: true,
-          validate: {
-            matchPatern: (value) =>
-              /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) ||
-              "Email Address must be valid address",
-          },
-        })}
-      />
 
-      <Input
-        label="Password"
-        placeholder="Enter Password here"
-        type="password"
-        {...register("password", {
-          required: true,
-        })}
-      />
-      </CardContent>
-       <CardFooter className="flex justify-between">
-      <Button type="submit">Sign up</Button>
-      <Link to="/login"><Button >Login</Button></Link>
-      </CardFooter>
-    </form>
-    </Card>
+        <form onSubmit={handleSubmit(createUser)} className="space-y-6">
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Full Name</Label>
+              <Input
+                id="name"
+                placeholder="John Doe"
+                className="w-full"
+                {...register("name", {
+                  required: true,
+                })}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                className="w-full"
+                {...register("email", {
+                  required: true,
+                  validate: {
+                    matchPatern: (value) =>
+                      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) ||
+                      "Email address must be valid",
+                  },
+                })}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                className="w-full"
+                {...register("password", {
+                  required: true,
+                })}
+              />
+            </div>
+          </CardContent>
+
+          <CardFooter className="flex flex-col space-y-4">
+            <Button type="submit" className="w-full">
+              Sign up
+            </Button>
+            <div className="text-center text-sm">
+              Already have an account?{" "}
+              <Link 
+                to="/login" 
+                className="font-medium text-blue-600 hover:text-blue-500"
+              >
+                Log in
+              </Link>
+            </div>
+          </CardFooter>
+        </form>
+      </Card>
     </div>
   );
 }
