@@ -7,23 +7,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ShimmerCircularImage } from "react-shimmer-effects";
+
 import Container from "./container/Container";
 import { useState,useEffect } from "react";
 import DatabaseService from "@/Appwrite/appWriteConfig";
 import { BlogCard } from ".";
 
 function getMinutesFromUTCToLocal(utcTimestamp) {
-  // Convert UTC timestamp to date object
+  
   const utcDate = new Date(utcTimestamp);
 
-  // Get the current local time
+  
   const localDate = new Date();
 
-  // Calculate the time difference in milliseconds
+  
   const timeDifference = localDate - utcDate;
 
-  // Convert milliseconds to minutes
+
   const minutesDifference = Math.floor(timeDifference / (1000 * 60));
 
   return minutesDifference;
@@ -32,9 +32,9 @@ function getMinutesFromUTCToLocal(utcTimestamp) {
 
 function getStatusWithDot(isActive) {
   if (isActive) {
-    return "Active \u{1F7E2}"; // Green dot emoji
+    return "Active \u{1F7E2}"; 
   } else {
-    return "Inactive \u{1F534}"; // Red dot emoji
+    return "Inactive \u{1F534}"; 
   }
 }
 
@@ -77,34 +77,52 @@ function Profile() {
 
   return (
     <Container>
-      <Card className="w-full h-svh/2 mt-4 flex flex-wrap gap-10">
-        <CardHeader>
-          <CardTitle>
-            <ShimmerCircularImage size={200} />
-          </CardTitle>
-          <CardDescription></CardDescription>
-        </CardHeader>
-        <CardContent className="mt-16">
-          <ul className=" flex flex-col gap-y-3 text-xl font-semibold">
-            <li> Name :{" " + userData?.name}</li>
-            <li> Email :{" " + userData?.email}</li>
-            <li>Phone No :{" " + userData?.phone}</li>
-          </ul>
-        </CardContent>
-        <CardFooter>
-          <ul className="flex flex-col gap-y-3 font-semibold">
-            <li> Online Status :{" " + statusWithDot}</li>
-            <li>Active since : {" " + activeSince + " "} min ago.</li>
-            <li>Account Created on :{" " + accountCreatedAt}</li>
-           
+     <Card className="w-full h-svh/2 flex flex-col items-center gap-8 mt-16 p-6">
+  <CardHeader className="text-center">
+    <CardTitle className="text-3xl font-bold">User Profile</CardTitle>
+    <CardDescription className="text-lg">
+      Detailed information about your account
+    </CardDescription>
+  </CardHeader>
 
-            <li>
-              Total no of your Posts :
-              {" "+posts.length}
-            </li>
-          </ul>
-        </CardFooter>
-      </Card>
+  <CardContent className="w-full max-w-md space-y-6">
+    <ul className="space-y-4 text-xl font-semibold">
+      <li className="flex justify-between">
+        <span className="">Name:</span>
+        <span className="">{userData?.name}</span>
+      </li>
+      <li className="flex justify-between">
+        <span className="">Email:</span>
+        <span className="">{userData?.email}</span>
+      </li>
+      <li className="flex justify-between">
+        <span className="">Phone No:</span>
+        <span className="">{userData?.phone}</span>
+      </li>
+    </ul>
+  </CardContent>
+
+  <CardFooter className="w-full max-w-md">
+    <ul className="w-full space-y-4 text-lg font-semibold">
+      <li className="flex justify-between">
+        <span className="">Online Status:</span>
+        <span className="">{statusWithDot}</span>
+      </li>
+      <li className="flex justify-between">
+        <span className="">Active since:</span>
+        <span className="">{activeSince} min ago</span>
+      </li>
+      <li className="flex justify-between">
+        <span className="">Account Created on:</span>
+        <span className="">{accountCreatedAt}</span>
+      </li>
+      <li className="flex justify-between">
+        <span className="">Total no of your Posts:</span>
+        <span className="">{posts.length}</span>
+      </li>
+    </ul>
+  </CardFooter>
+</Card>
 
       <div className='flex flex-wrap mt-4'>
                 {posts.map((post) => (

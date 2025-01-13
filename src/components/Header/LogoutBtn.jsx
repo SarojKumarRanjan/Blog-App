@@ -20,7 +20,7 @@ function LogoutBtn() {
 
 
 
-  return <Button  onClick={logoutHandler} variant="default">Logout</Button>
+  return <Button  onClick={logoutHandler} variant="ghost">Logout</Button>
 }
 
 export default LogoutBtn

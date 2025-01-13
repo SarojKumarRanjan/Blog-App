@@ -13,7 +13,8 @@ import Home from './components/Pages/Home.jsx'
 import Login from './components/Pages/Login.jsx'
 import SignUpPage from './components/Pages/SignUpPage.jsx'
 import AllPost from './components/Pages/AllPost.jsx'
-import { HeroSection } from './components/home/Hero-Section.jsx'
+import SearchPage from './components/Pages/SearchPage.jsx'
+
 
 
 
@@ -32,11 +33,11 @@ const EditPost = lazy(() => import('./components/Pages/EditPost.jsx'))
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HeroSection />,
+    element: <App />,
     children: [
         {
             path: "/",
-            element: "",
+            element: <Home />,
         },
         {
             path: "/login",
@@ -57,10 +58,9 @@ const router = createBrowserRouter([
         {
             path: "/all-post",
             element: (
-                <AuthLayout authentication>
-                    {" "}
+                
                     <AllPost />
-                </AuthLayout>
+                
             ),
         },
         {
@@ -100,6 +100,10 @@ const router = createBrowserRouter([
             path: "/post/:slug",
             element: <Post />,
         },
+        {
+            path: "/search/:search",
+            element: <SearchPage />,
+        }
     ],
 },
 ])
