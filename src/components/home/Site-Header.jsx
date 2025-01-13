@@ -62,7 +62,7 @@ export function SiteHeader() {
             ) : null
           )}
           {authStatus && <LogoutBtn />}
-          <ModeToggle />
+          
         </div>
 
         {/* Mobile Navigation */}
