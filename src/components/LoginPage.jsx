@@ -29,6 +29,8 @@ function LoginPage() {
   const [error, setError] = useState("");
 
   const login = async(data) => {
+    console.log(data);
+    
     setError("")
     try {
         const session = await authService.login(data)
@@ -98,9 +100,19 @@ function LoginPage() {
             )}
           </CardContent>
 
-          <CardFooter className="flex flex-col space-y-4">
+          <CardFooter className="flex flex-col space-y-3">
             <Button type="submit" className="w-full">
               Sign in
+            </Button>
+            <Button
+            onClick={() => {
+              login({
+                email: "abcd@gmail.com",
+                password: "abcd1234",
+              })}}
+              
+            className="w-full">
+              Sign in as Guest
             </Button>
             <div className="text-center text-sm">
               Don&apos;t have an account?{" "}

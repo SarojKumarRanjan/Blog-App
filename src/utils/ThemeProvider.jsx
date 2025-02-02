@@ -6,7 +6,7 @@ export function ThemeProvider({
   // eslint-disable-next-line react/prop-types
   children,
   // eslint-disable-next-line react/prop-types
-  defaultTheme = "system",
+  defaultTheme = "dark",
   // eslint-disable-next-line react/prop-types
   storageKey = "vite-ui-theme",
   ...props
